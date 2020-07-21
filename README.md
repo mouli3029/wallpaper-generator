@@ -1,5 +1,5 @@
 # wallpaper-generator
-##Header
-Wallpaper generator using react
-##SubHeader
-Generates beautiful wallpapers for your desktop,mobile etc...
+
+# Generates beautiful Wallpapers for your desktop,mobile etc..
+
+
