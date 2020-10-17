@@ -1,6 +1,8 @@
 import React , {useState,useEffect} from 'react';
 import './App.css';
-import ImageItem from './ImageItem';
+import {Card,CardImg,CardBody,CardTitle,CardSubtitle,Nav,Navbar} from "reactstrap";
+import { Button } from '@material-ui/core';
+
 function App() {
   const[input,setInput] = useState('');
   const[images,setImages] = useState([]); 
@@ -14,36 +16,35 @@ function App() {
   }
   return (
     <div className="app">
-    <div className="app__header">
-     <h1 className="title">Wallpaper Generator</h1>
-     <h4 className="mouli">by Mouli..❤</h4>
-     </div>
-     <form onSubmit={handleChange}>
-     <div className="app__search">
-       <input
-       placeholder ="Search here...."
-       value={input}
-       onChange={(e)=>setInput(e.target.value)} 
-       className="app__search-input"
-       type="text" />
-       <button 
-       type="submit" 
-       className="app__search-button"
-       >Search</button>
-     </div>
-     </form>
-     <p><h4 style={{color:'red'}}>Hint :</h4>You can download the picture by clicking on it....</p>
-     <div className="app__content">
-       {images.map(image=>(
-         <ImageItem 
-         key={image.id}
-         description = {image.alt_description}
-         likes ={image.likes}
-         image_src = {image.urls.regular}
-         link ={image.links.download}
-         />
-       ))}
-     </div> 
+      <div className="app__header">
+        <h4 className="title">Wallpaper Generator</h4>
+      </div>
+      <form onSubmit={handleChange}>
+        <div className="app__search">
+          <input
+          placeholder ="Search here...."
+          value={input}
+          onChange={(e)=>setInput(e.target.value)} 
+          className="app__search-input"
+          type="text" />
+          <Button 
+          type="submit" 
+          className="app__search-button"
+          >Search</Button>
+        </div>
+      </form>
+      <p><h4 style={{color:'red'}}>Hint :</h4>You can download the picture by clicking on it....</p>
+        <div className="container">
+            {images.map(image=>(
+              <Card key={image.id} className="card">
+                <CardImg className="cardImage" src={image.urls.regular}/>
+                <CardBody>
+                  <CardTitle>{image.alt_description}</CardTitle>
+                  <CardSubtitle>{image.likes} 👍</CardSubtitle>
+                </CardBody>
+              </Card>
+        ))}
+      </div>
     </div>
   );
 }
